@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import pawnbolo.com.pawnbolo.models.Bolo;
 import pawnbolo.com.pawnbolo.models.BoloType;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -50,4 +51,35 @@ public interface BoloRepository extends JpaRepository<Bolo, Long> {
 
     @Query("SELECT b FROM Bolo b JOIN b.itemBoloDetails d WHERE d.model = :model")
     List<Bolo> findByModel(@Param("model") String model);
+
+    /**
+     * Retrieves a list of person BOLOs by first name and last name.
+     * Only BOLOs with a boloType of PERSON and an associated PersonProfile are returned.
+     * @param firstName the first name to search for.
+     * @param lastName the last name to search for.
+     * @return a list of BOLOs that match the criteria.
+     */
+    @Query("SELECT b FROM Bolo b JOIN b.personProfile p " +
+            "WHERE b.boloType = 'PERSON' " +
+            "AND p.firstName = :firstName " +
+            "AND p.lastName = :lastName")
+    List<Bolo> findPersonBolosByName(@Param("firstName") String firstName,
+                                     @Param("lastName") String lastName);
+
+    /**
+     * Retrieves a list of person BOLOs by first name, last name, and date of birth.
+     * Only BOLOs with a boloType of PERSON and an associated PersonProfile are returned.
+     * @param firstName the first name to search for.
+     * @param lastName the last name to search for.
+     * @param dob the date of birth to search for.
+     * @return a list of BOLOs that match the criteria.
+     */
+    @Query("SELECT b FROM Bolo b JOIN b.personProfile p " +
+            "WHERE b.boloType = 'PERSON' " +
+            "AND p.firstName = :firstName " +
+            "AND p.lastName = :lastName " +
+            "AND p.dob = :dob")
+    List<Bolo> findPersonBolosByNameAndDob(@Param("firstName") String firstName,
+                                           @Param("lastName") String lastName,
+                                           @Param("dob") Date dob);
 }
