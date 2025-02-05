@@ -44,7 +44,6 @@ public class BoloService {
      * @return the saved BOLO.
      */
     public Bolo createBolo(Bolo bolo) {
-        // Here you might add any business logic or validations before saving.
         return boloRepository.save(bolo);
     }
 
