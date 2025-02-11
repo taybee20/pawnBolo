@@ -18,7 +18,7 @@ public class PawnBoloApplication {
     @Bean
     ApplicationRunner applicationRunner(BoloRepository boloRepository) {
         return args -> {
-            boloRepository.save(new Bolo());
+//            boloRepository.save(new Bolo());
         };
     }
 
