@@ -19,20 +19,14 @@ public class AwsCognitoConfig {
 //    @Value("${aws.secretKey}")
 //    private String secretKey;
 //
-    @Value("${aws.region}")
+    @Value("${aws.cognito.region}")
     private String region;
 
-    @Value("${aws.accessKey:NOT_SET}")
+    @Value("${aws.client-id:NOT_SET}")
     private String accessKey;
 
-    @Value("${aws.secretKey:NOT_SET}")
+    @Value("${aws.client-secret:NOT_SET}")
     private String secretKey;
-
-    @PostConstruct
-    public void init() {
-        System.out.println("🟢 AWS Access Key: " + accessKey);
-        System.out.println("🟢 AWS Secret Key: " + (secretKey.equals("NOT_SET") ? "NOT SET" : "********"));
-    }
 
     @Bean
     public AWSCognitoIdentityProvider cognitoIdentityProvider() {
