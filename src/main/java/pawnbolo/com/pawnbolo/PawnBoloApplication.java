@@ -15,11 +15,11 @@ public class PawnBoloApplication {
         SpringApplication.run(PawnBoloApplication.class, args);
     }
 
-    @Bean
-    ApplicationRunner applicationRunner(BoloRepository boloRepository) {
-        return args -> {
-            boloRepository.save(new Bolo());
-        };
-    }
+//    @Bean
+//    ApplicationRunner applicationRunner(BoloRepository boloRepository) {
+//        return args -> {
+//            boloRepository.save(new Bolo());
+//        };
+//    }
 
 }

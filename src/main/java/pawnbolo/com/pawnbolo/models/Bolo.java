@@ -27,7 +27,7 @@ public class Bolo {
     private Date createdDate = new Date();
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
+    @Column(nullable = true)
     private BoloType boloType; // ITEM or PERSON
 
     // For person BOLOs, link to a PersonProfile (nullable for item BOLOs)
