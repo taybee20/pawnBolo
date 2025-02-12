@@ -82,4 +82,5 @@ public interface BoloRepository extends JpaRepository<Bolo, Long> {
     List<Bolo> findPersonBolosByNameAndDob(@Param("firstName") String firstName,
                                            @Param("lastName") String lastName,
                                            @Param("dob") Date dob);
+
 }
