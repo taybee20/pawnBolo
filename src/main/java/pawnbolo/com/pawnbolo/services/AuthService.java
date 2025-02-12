@@ -18,13 +18,13 @@ public class AuthService {
     private final UserRepository userRepository;
     private final PawnStoreRepository pawnStoreRepository;
 
-    @Value("${aws.cognito.userPoolId}")
+    @Value("${aws.cognito.user-pool-id}")
     private String userPoolId;
 
-    @Value("${aws.cognito.clientId}")
+    @Value("${aws.cognito.client-id}")
     private String clientId;
 
-    @Value("${aws.cognito.clientSecret}")
+    @Value("${aws.cognito.client-secret}")
     private String clientSecret;
 
     public AuthService(AWSCognitoIdentityProvider cognitoClient, UserRepository userRepository, PawnStoreRepository pawnStoreRepository) {
