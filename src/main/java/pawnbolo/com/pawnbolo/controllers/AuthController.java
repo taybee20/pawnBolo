@@ -17,8 +17,8 @@ public class AuthController {
     @PostMapping("/signup")
     public ResponseEntity<String> signUp(@RequestBody AuthRequest request) {
         try {
-            authService.signUp(request.getEmail(), request.getPassword(), request.getName(), request.getPawnStoreId());
-            return ResponseEntity.status(201).body("User registered successfully.");
+            authService.signUp(request.getEmail(), request.getName());
+            return ResponseEntity.status(201).body("User registered successfully. Pending approval.");
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("Signup failed: " + e.getMessage());
         }

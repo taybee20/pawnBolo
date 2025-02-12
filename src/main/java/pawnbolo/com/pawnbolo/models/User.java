@@ -28,6 +28,10 @@ public class User {
     @Column(nullable = false)
     private Role role;  // Role can be ADMIN or EMPLOYEE
 
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private ApprovalStatus status = ApprovalStatus.PENDING;
+
     private String name;
 
     @OneToMany(mappedBy = "createdBy", cascade = CascadeType.ALL)
@@ -87,5 +91,13 @@ public class User {
 
     public void setCreatedBolos(List<Bolo> createdBolos) {
         this.createdBolos = createdBolos;
+    }
+
+    public void setApprovalStatus(ApprovalStatus approvalStatus) {
+        this.status = approvalStatus;
+    }
+
+    public ApprovalStatus getApprovalStatus() {
+        return status;
     }
 }

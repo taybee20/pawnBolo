@@ -10,10 +10,7 @@ import pawnbolo.com.pawnbolo.repositories.UserRepository;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
-import java.util.Base64;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class AuthService {
@@ -50,39 +47,44 @@ public class AuthService {
         }
     }
 
-    // Sign Up User (Cognito + Save in Database)
-    public void signUp(String email, String password, String name, Long pawnStoreId) {
-        // Retrieve PawnStore
-        Optional<PawnStore> pawnStoreOpt = pawnStoreRepository.findById(pawnStoreId);
-        if (pawnStoreOpt.isEmpty()) {
-            throw new RuntimeException("PawnStore not found with ID: " + pawnStoreId);
-        }
-        PawnStore pawnStore = pawnStoreOpt.get();
+    // Sign Up User (Save in Database as PENDING for admin approval)
+    public void signUp(String email, String name) {
 
-        // Register with Cognito
-        Map<String, String> attributes = new HashMap<>();
-        attributes.put("email", email);
-
-        SignUpRequest signUpRequest = new SignUpRequest()
-                .withClientId(clientId)
-                .withUsername(email)
-                .withPassword(password)
-                .withUserAttributes(
-                        new AttributeType().withName("email").withValue(email)
-                )
-                .withSecretHash(calculateSecretHash(email));
-
-        com.amazonaws.services.cognitoidp.model.SignUpResult result = cognitoClient.signUp(signUpRequest);
-        String cognitoUserId = result.getUserSub(); // Retrieve Cognito User ID
+//        // Register with Cognito
+//        Map<String, String> attributes = new HashMap<>();
+//        attributes.put("email", email);
+//
+//        SignUpRequest signUpRequest = new SignUpRequest()
+//                .withClientId(clientId)
+//                .withUsername(email)
+//                .withPassword(password)
+//                .withUserAttributes(
+//                        new AttributeType().withName("email").withValue(email)
+//                )
+//                .withSecretHash(calculateSecretHash(email));
+//
+//        com.amazonaws.services.cognitoidp.model.SignUpResult result = cognitoClient.signUp(signUpRequest);
+//        String cognitoUserId = result.getUserSub(); // Retrieve Cognito User ID
 
         // Save user in the database
         User user = new User();
         user.setEmail(email);
-        user.setCognitoUserId(cognitoUserId);
-        user.setPawnStore(pawnStore);
         user.setName(name);
         user.setRole(Role.EMPLOYEE); // Default to EMPLOYEE
+        user.setApprovalStatus(ApprovalStatus.PENDING);
 
         userRepository.save(user);
+    }
+
+    public String createCognitoUser(String email) {
+        SignUpRequest signUpRequest = new SignUpRequest()
+                .withClientId(clientId)
+                .withUsername(email)
+                .withPassword(UUID.randomUUID().toString()) // Temporary random password
+                .withUserAttributes(new AttributeType().withName("email").withValue(email))
+                .withSecretHash(calculateSecretHash(email));
+
+        com.amazonaws.services.cognitoidp.model.SignUpResult result = cognitoClient.signUp(signUpRequest);
+        return result.getUserSub(); //Return Cognito User ID
     }
 }
