@@ -48,25 +48,25 @@ public class BoloController {
      * Create Item BOLO
      * POST /api/bolos/item
      */
-    @PostMapping("/item")
-    public ResponseEntity<Bolo> createItemBolo(@RequestBody Bolo itemBolo) {
-        Bolo created = boloService.createItemBolo(itemBolo);
-        return new ResponseEntity<>(created, HttpStatus.CREATED);
-    }
-
-    /**
-     * Create Person BOLO
-     * POST /api/bolos/person
-     */
-    @PostMapping("/person")
-    public ResponseEntity<Bolo> createPersonBolo(@RequestBody Bolo personBolo) {
-        Bolo created = boloService.createPersonBolo(personBolo);
-        return new ResponseEntity<>(created, HttpStatus.CREATED);
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteBolo(@PathVariable Long id) {
-        boloService.deleteBolo(id);
-        return ResponseEntity.noContent().build();
-    }
+//    @PostMapping("/item")
+//    public ResponseEntity<Bolo> createItemBolo(@RequestBody Bolo itemBolo) {
+//        Bolo created = boloService.createItemBolo(itemBolo);
+//        return new ResponseEntity<>(created, HttpStatus.CREATED);
+//    }
+//
+//    /**
+//     * Create Person BOLO
+//     * POST /api/bolos/person
+//     */
+//    @PostMapping("/person")
+//    public ResponseEntity<Bolo> createPersonBolo(@RequestBody Bolo personBolo) {
+//        Bolo created = boloService.createPersonBolo(personBolo);
+//        return new ResponseEntity<>(created, HttpStatus.CREATED);
+//    }
+//
+//    @DeleteMapping("/{id}")
+//    public ResponseEntity<Void> deleteBolo(@PathVariable Long id) {
+//        boloService.deleteBolo(id);
+//        return ResponseEntity.noContent().build();
+//    }
 }

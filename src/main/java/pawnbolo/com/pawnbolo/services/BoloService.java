@@ -82,32 +82,32 @@ public class BoloService {
      * @param lastName the last name to search for.
      * @param dob the date of birth to search for.
      * @return a list of BOLOs with associated person profiles that match the criteria.
-     */
-    public List<Bolo> getPersonBolosByNameAndDob(String firstName, String lastName, java.util.Date dob) {
-        return boloRepository.findPersonBolosByNameAndDob(firstName, lastName, dob);
-    }
-
-    public Bolo createPersonBolo(Bolo bolo) {
-        bolo.setBoloType(BoloType.PERSON);
-        return boloRepository.save(bolo);
-    }
-    public Bolo createItemBolo(Bolo bolo) {
-        bolo.setBoloType(BoloType.ITEM);
-        return boloRepository.save(bolo);
-    }
-    public void deleteBolo(Long boloId) {
-        boloRepository.deleteById(boloId);
-    }
+//     */
+//    public List<Bolo> getPersonBolosByNameAndDob(String firstName, String lastName, java.util.Date dob) {
+//        return boloRepository.findPersonBolosByNameAndDob(firstName, lastName, dob);
+//    }
+//
+//    public Bolo createPersonBolo(Bolo bolo) {
+//        bolo.setBoloType(BoloType.PERSON);
+//        return boloRepository.save(bolo);
+//    }
+//    public Bolo createItemBolo(Bolo bolo) {
+//        bolo.setBoloType(BoloType.ITEM);
+//        return boloRepository.save(bolo);
+//    }
+//    public void deleteBolo(Long boloId) {
+//        boloRepository.deleteById(boloId);
+//    }
 
     // Flag a BOLO
-    //TODO:
-    public Flag flagBolo(Long boloId, Flag flag) {
-        Bolo bolo = boloRepository.findById(boloId)
-                .orElseThrow(() -> new RuntimeException("BOLO not found")); // or a custom exception
-
-        flag.setBolo(bolo);
-        // If you track who flagged it, set flag.setFlaggedBy(someUser) here
-        return flagRepository.save(flag);
-    }
+//    //TODO:
+//    public Flag flagBolo(Long boloId, Flag flag) {
+//        Bolo bolo = boloRepository.findById(boloId)
+//                .orElseThrow(() -> new RuntimeException("BOLO not found")); // or a custom exception
+//
+//        flag.setBolo(bolo);
+//        // If you track who flagged it, set flag.setFlaggedBy(someUser) here
+//        return flagRepository.save(flag);
+//    }
 
 }

@@ -67,7 +67,7 @@ public class FlagService {
      * @return List of Flag records for that BOLO.
      */
     public List<Flag> getFlagsByBoloId(Long boloId) {
-        return flagRepository.findByBoloId(boloId);
+        return flagRepository.findByBolo_BoloId(boloId);
     }
 
     /**

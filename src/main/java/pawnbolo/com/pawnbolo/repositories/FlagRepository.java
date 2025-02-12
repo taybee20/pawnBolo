@@ -10,8 +10,9 @@ import java.util.List;
 public interface FlagRepository extends JpaRepository<Flag, Long> {
 
     // Find all flags associated with a specific BOLO by its ID
-    List<Flag> findByBoloId(Long boloId);
+    List<Flag> findByBolo_BoloId(Long boloId);
 
     // Optionally, find all flags made by a specific user by their ID
     List<Flag> findByFlaggedBy_UserId(Long userId);
 }
+
