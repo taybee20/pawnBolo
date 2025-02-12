@@ -59,7 +59,51 @@ public class PawnStore {
         this.isApproved = approved;
     }
 
+    public boolean isApproved() {
+        return this.isApproved;
+    }
+
     public void setLicenseFileUrl(String fileUrl) {
         this.licenseUrl = fileUrl;
+    }
+
+    public String getBusinessName() {
+        return businessName;
+    }
+
+    public void setBusinessName(String businessName) {
+        this.businessName = businessName;
+    }
+
+    public String getLicenseNumber() {
+        return licenseNumber;
+    }
+
+    public void setLicenseNumber(String licenseNumber) {
+        this.licenseNumber = licenseNumber;
+    }
+
+    public String getLicenseUrl() {
+        return licenseUrl;
+    }
+
+    public void setLicenseUrl(String licenseUrl) {
+        this.licenseUrl = licenseUrl;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public LocalDate getLicenseExpiration() {
+        return licenseExpiration;
+    }
+
+    public void setLicenseExpiration(LocalDate licenseExpiration) {
+        this.licenseExpiration = licenseExpiration;
     }
 }

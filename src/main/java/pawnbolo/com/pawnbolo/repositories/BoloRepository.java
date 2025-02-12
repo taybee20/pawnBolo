@@ -33,8 +33,8 @@ public interface BoloRepository extends JpaRepository<Bolo, Long> {
 
      * @param pawnStoreId the ID of the PawnStore.
      * @return a list of BOLOs associated with the specified PawnStore.
-     */
-    @Query("SELECT b FROM Bolo b WHERE b.pawnStore.pawnStoreId = :pawnStoreId")
+//     */
+    @Query("SELECT b FROM Bolo b WHERE b.pawnStore.id = :pawnStoreId")
     List<Bolo> findByPawnStoreId(@Param("pawnStoreId") Long pawnStoreId);
 
     /**
